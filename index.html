@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos en CSS - Guía completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+
+        /* ===== Menú ===== */
+        .menu {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            padding: 8px 12px;
+            gap: 4px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .menu a:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        /* ===== Contenido ===== */
+        .contenido {
+            width: 94%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 24px 0 50px;
+        }
+
+        section {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px 30px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            color: #334155;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            color: #475569;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 14px;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 0.88rem;
+            color: #0f172a;
+        }
+
+        pre {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px 18px;
+            overflow-x: auto;
+            margin: 14px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* ===== Cajas de ejemplo ===== */
+        .ejemplo {
+            height: 120px;
+            border-radius: 10px;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+
+        .bg-color {
+            background-color: #3b82f6;
+        }
+
+        .bg-degradado {
+            background-image: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .bg-radial {
+            background-image: radial-gradient(circle, #22d3ee, #3b82f6);
+        }
+
+        .bg-imagen {
+            background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-imagen-color {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.6)),
+                url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-repeat {
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            background-color: #e0f2fe;
+            background-repeat: repeat;
+            color: #0f172a;
+            text-shadow: none;
+        }
+
+        .bg-no-repeat {
+            background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            text-shadow: none;
+        }
+
+        .bg-fixed {
+            background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .bg-multiple {
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5)),
+                url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800");
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        td {
+            color: #475569;
+        }
+
+        /* ===== Tarea ===== */
+        .tarea {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 28px 30px;
+            margin-bottom: 22px;
+        }
+
+        .tarea h2 {
+            color: #1d4ed8;
+            border-bottom-color: #93c5fd;
+        }
+
+        .tarea ol {
+            margin-top: 12px;
+        }
+
+        .tarea li {
+            margin-bottom: 10px;
+        }
+
+        .nota {
+            background: #fefce8;
+            border-left: 4px solid #eab308;
+            padding: 12px 16px;
+            margin-top: 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #713f12;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="#intro">Inicio</a></li>
+            <li><a href="#color">Color</a></li>
+            <li><a href="#imagen">Imagen</a></li>
+            <li><a href="#degradado">Degradado</a></li>
+            <li><a href="#size">Size</a></li>
+            <li><a href="#position">Position</a></li>
+            <li><a href="#repeat">Repeat</a></li>
+            <li><a href="#attachment">Attachment</a></li>
+            <li><a href="#multiple">Múltiples</a></li>
+            <li><a href="#shorthand">Shorthand</a></li>
+            <li><a href="#tarea">Tarea</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenido">
+
+        <!-- INTRO -->
+        <section id="intro">
+            <h1>Fondos en CSS</h1>
+            <p>
+                La propiedad <code>background</code> permite controlar el fondo de cualquier elemento HTML.
+                Puedes usar colores, imágenes, degradados y combinarlos de muchas formas.
+            </p>
+            <p>
+                CSS ofrece varias propiedades relacionadas con el fondo. Las más importantes son:
+            </p>
+            <ul>
+                <li><code>background-color</code></li>
+                <li><code>background-image</code></li>
+                <li><code>background-size</code></li>
+                <li><code>background-position</code></li>
+                <li><code>background-repeat</code></li>
+                <li><code>background-attachment</code></li>
+                <li><code>background</code> (shorthand)</li>
+            </ul>
+        </section>
+
+        <!-- COLOR -->
+        <section id="color">
+            <h2>1. background-color</h2>
+            <p>Define un color sólido de fondo.</p>
+
+            <pre><code>.caja {
+    background-color: #3b82f6;
+}</code></pre>
+
+            <div class="ejemplo bg-color">Color sólido</div>
+
+            <h3>Valores posibles:</h3>
+            <ul>
+                <li>Nombre de color: <code>red</code>, <code>blue</code>...</li>
+                <li>Hexadecimal: <code>#3b82f6</code></li>
+                <li>RGB / RGBA: <code>rgb(59, 130, 246)</code></li>
+                <li>HSL: <code>hsl(217, 91%, 60%)</code></li>
+                <li><code>transparent</code></li>
+            </ul>
+        </section>
+
+        <!-- IMAGEN -->
+        <section id="imagen">
+            <h2>2. background-image</h2>
+            <p>Permite colocar una imagen de fondo.</p>
+
+            <pre><code>.caja {
+    background-image: url("imagen.jpg");
+}</code></pre>
+
+            <div class="ejemplo bg-imagen">Imagen de fondo</div>
+
+            <p>
+                También se puede combinar con un color usando un degradado semitransparente encima:
+            </p>
+
+            <pre><code>.caja {
+    background-image: 
+        linear-gradient(rgba(59,130,246,0.6), rgba(139,92,246,0.6)),
+        url("imagen.jpg");
+}</code></pre>
+
+            <div class="ejemplo bg-imagen-color">Imagen + color</div>
+        </section>
+
+        <!-- DEGRADADO -->
+        <section id="degradado">
+            <h2>3. Degradados (Gradients)</h2>
+            <p>
+                Los degradados se aplican con <code>background-image</code> usando funciones especiales.
+            </p>
+
+            <h3>Linear Gradient</h3>
+            <pre><code>.caja {
+    background-image: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}</code></pre>
+            <div class="ejemplo bg-degradado">Linear Gradient</div>
+
+            <h3>Radial Gradient</h3>
+            <pre><code>.caja {
+    background-image: radial-gradient(circle, #22d3ee, #3b82f6);
+}</code></pre>
+            <div class="ejemplo bg-radial">Radial Gradient</div>
+        </section>
+
+        <!-- SIZE -->
+        <section id="size">
+            <h2>4. background-size</h2>
+            <p>Controla el tamaño de la imagen de fondo.</p>
+
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td><code>cover</code></td>
+                    <td>La imagen cubre todo el elemento (puede recortarse)</td>
+                </tr>
+                <tr>
+                    <td><code>contain</code></td>
+                    <td>La imagen se muestra completa (pueden quedar espacios)</td>
+                </tr>
+                <tr>
+                    <td><code>100% 100%</code></td>
+                    <td>Estira la imagen al tamaño del elemento</td>
+                </tr>
+                <tr>
+                    <td><code>200px 150px</code></td>
+                    <td>Tamaño fijo en píxeles</td>
+                </tr>
+            </table>
+
+            <pre><code>.caja {
+    background-image: url("imagen.jpg");
+    background-size: cover;
+}</code></pre>
+        </section>
+
+        <!-- POSITION -->
+        <section id="position">
+            <h2>5. background-position</h2>
+            <p>Define la posición de la imagen dentro del elemento.</p>
+
+            <pre><code>.caja {
+    background-position: center;
+    /* Otros valores: top, bottom, left, right, 50% 50%, 20px 40px */
+}</code></pre>
+
+            <p>Valores comunes:</p>
+            <ul>
+                <li><code>center</code> / <code>center center</code></li>
+                <li><code>top left</code>, <code>bottom right</code>...</li>
+                <li><code>50% 50%</code></li>
+                <li><code>20px 40px</code></li>
+            </ul>
+        </section>
+
+        <!-- REPEAT -->
+        <section id="repeat">
+            <h2>6. background-repeat</h2>
+            <p>Controla si la imagen se repite o no.</p>
+
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Resultado</th>
+                </tr>
+                <tr>
+                    <td><code>repeat</code></td>
+                    <td>Se repite en ambas direcciones (valor por defecto)</td>
+                </tr>
+                <tr>
+                    <td><code>no-repeat</code></td>
+                    <td>No se repite</td>
+                </tr>
+                <tr>
+                    <td><code>repeat-x</code></td>
+                    <td>Solo horizontal</td>
+                </tr>
+                <tr>
+                    <td><code>repeat-y</code></td>
+                    <td>Solo vertical</td>
+                </tr>
+            </table>
+
+            <pre><code>.caja {
+    background-image: url("patron.png");
+    background-repeat: repeat;
+}</code></pre>
+
+            <div class="ejemplo bg-repeat">background-repeat: repeat</div>
+            <div class="ejemplo bg-no-repeat">background-repeat: no-repeat</div>
+        </section>
+
+        <!-- ATTACHMENT -->
+        <section id="attachment">
+            <h2>7. background-attachment</h2>
+            <p>Define si el fondo se mueve al hacer scroll o permanece fijo.</p>
+
+            <ul>
+                <li><code>scroll</code> → el fondo se mueve con el contenido (por defecto)</li>
+                <li><code>fixed</code> → el fondo queda fijo (efecto parallax)</li>
+                <li><code>local</code> → el fondo se mueve con el contenido del elemento</li>
+            </ul>
+
+            <pre><code>.caja {
+    background-image: url("imagen.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}</code></pre>
+
+            <div class="ejemplo bg-fixed">background-attachment: fixed</div>
+        </section>
+
+        <!-- MÚLTIPLES -->
+        <section id="multiple">
+            <h2>8. Múltiples fondos</h2>
+            <p>
+                Puedes combinar varias imágenes o degradados separándolos por comas.
+                La primera capa queda encima.
+            </p>
+
+            <pre><code>.caja {
+    background-image: 
+        linear-gradient(rgba(15,23,42,0.5), rgba(15,23,42,0.5)),
+        url("imagen.jpg");
+    background-size: cover;
+}</code></pre>
+
+            <div class="ejemplo bg-multiple">Múltiples capas</div>
+        </section>
+
+        <!-- SHORTHAND -->
+        <section id="shorthand">
+            <h2>9. background (shorthand)</h2>
+            <p>
+                Puedes escribir todas las propiedades en una sola línea.
+            </p>
+
+            <pre><code>.caja {
+    background: #3b82f6 url("imagen.jpg") center / cover no-repeat fixed;
+}</code></pre>
+
+            <p>Orden recomendado:</p>
+            <ol>
+                <li><code>background-color</code></li>
+                <li><code>background-image</code></li>
+                <li><code>background-position</code></li>
+                <li><code>/</code> + <code>background-size</code></li>
+                <li><code>background-repeat</code></li>
+                <li><code>background-attachment</code></li>
+            </ol>
+        </section>
+
+        <!-- RESUMEN -->
+        <section>
+            <h2>Resumen rápido</h2>
+            <table>
+                <tr>
+                    <th>Propiedad</th>
+                    <th>Para qué sirve</th>
+                </tr>
+                <tr>
+                    <td><code>background-color</code></td>
+                    <td>Color sólido</td>
+                </tr>
+                <tr>
+                    <td><code>background-image</code></td>
+                    <td>Imagen o degradado</td>
+                </tr>
+                <tr>
+                    <td><code>background-size</code></td>
+                    <td>Tamaño de la imagen</td>
+                </tr>
+                <tr>
+                    <td><code>background-position</code></td>
+                    <td>Posición de la imagen</td>
+                </tr>
+                <tr>
+                    <td><code>background-repeat</code></td>
+                    <td>Repetición</td>
+                </tr>
+                <tr>
+                    <td><code>background-attachment</code></td>
+                    <td>Comportamiento al hacer scroll</td>
+                </tr>
+                <tr>
+                    <td><code>background</code></td>
+                    <td>Atajo de todas las anteriores</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- ===== TAREA ===== -->
+        <section class="tarea" id="tarea">
+            <h2>📝 Tarea práctica</h2>
+            <p>
+                Ahora es tu turno. Crea una página HTML + CSS donde demuestres lo que aprendiste sobre fondos.
+            </p>
+
+            <h3>Indicaciones:</h3>
+            <ol>
+                <li>Crea un archivo llamado <code>fondos.html</code> y otro llamado <code>estilos.css</code>.</li>
+                <li>En la página debe haber un menú de navegación y al menos <strong>4 secciones</strong>.</li>
+                <li>Cada sección debe mostrar un tipo de fondo diferente:
+                    <ul>
+                        <li>Fondo de color sólido</li>
+                        <li>Fondo con degradado (linear o radial)</li>
+                        <li>Fondo con imagen</li>
+                        <li>Fondo con imagen + color (usando un degradado semitransparente)</li>
+                    </ul>
+                </li>
+                <li>En cada sección escribe una breve explicación y muestra el código CSS que usaste.</li>
+                <li>Las cajas de ejemplo deben tener al menos <code>120px</code> de alto y bordes redondeados.</li>
+                <li>Usa <code>background-size: cover</code> y <code>background-position: center</code> en las imágenes.</li>
+            </ol>
+
+            <div class="nota">
+                <strong>Extra (opcional):</strong> Agrega un quinto ejemplo usando <code>background-attachment: fixed</code> o múltiples fondos.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Guía de fondos en CSS · Hecho por <a href="#">Lemar</a>
+    </footer>
+
+</body>
+</html>
